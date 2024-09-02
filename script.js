@@ -8,7 +8,7 @@ function calculate() {
             resultElement.innerText = '';
         } else {
             const result = (itemValue * percentage) / 100;
-            resultElement.innerText = `Result: ${result}`;
+            resultElement.innerText = `Annos: ${result} grammaa`;
         }
     }
 }
