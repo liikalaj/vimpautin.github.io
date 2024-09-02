@@ -3,6 +3,6 @@ function calculate() {
         const itemValue = parseFloat(document.getElementById(`item${i}`).value);
         const percentage = parseFloat(document.getElementById(`percentage${i}`).value);
         const result = (itemValue * percentage) / 100;
-        document.getElementById(`result${i}`).innerText = `Result: ${result}`;
+        document.getElementById(`result${i}`).innerText = `Annos: ${result} grammaa`;
     }
 }
