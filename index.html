@@ -7,15 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<div class="links">
-        <a href="protein1.html">Ap/ip proteiini</a>
-        <a href="protein2.html">Lounaan proteiini</a>
-        <a href="fat.html">Rasva</a>
-		<a href="carb1.html">Ap/ip hiilarit</a>
-		<a href="carb2.html">Lounaan hiilarit</a>
-    </div>
+    <div id="links-container"></div>
+	
+	
 
     
     <script src="script.js"></script>
+	<script>
+        // Function to load the links.html content into the links-container div
+        fetch('links.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('links-container').innerHTML = data;
+            });
+    </script>
+	
 </body>
 </html>
