@@ -16,6 +16,14 @@ function calculate() {
             resultElement.innerText = `Annos: ${result} grammaa`;
         }
     }
-    document.getElementById('result0').innerText = `Total Percentage: ${totalPercentage}%`;
+    
+    const result0Element = document.getElementById('result0');
+    if (totalPercentage < 100) {
+        result0Element.innerText = `Prosentit yhteensä ovat alle 100!: (${totalPercentage}%)`;
+    } else if (totalPercentage === 100) {
+        result0Element.innerText = `Prosentit yhteensä: ${totalPercentage}%.`;
+    } else {
+        result0Element.innerText = `Prosentit yhteensä ovat yli 100!: (${totalPercentage}%)`;
+    }
 
 }
