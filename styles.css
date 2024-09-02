@@ -21,13 +21,20 @@ form {
     gap: 10px;
 }
 
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
 select, button {
     padding: 10px;
     font-size: 16px;
 }
 
-#result {
-    margin-top: 20px;
+#result1, #result2, #result3, #result4, #result5 {
+    margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
 }
