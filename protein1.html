@@ -9,8 +9,9 @@
 <body>
     <div class="container">
         <h1>AP/IP proteiinien vimpautin</h1>
-	<button type="button" onclick="calculate()">Calculate</button>
-        <form id="calculator-form">
+ 	<form id="calculator-form">
+            <button type="button" onclick="calculate()">Calculate</button>
+            <hr>
             <div class="row">
                 <label for="item1">Vaihtoehto 1:</label>
                 <select id="item1">
@@ -187,11 +188,11 @@
             </div>
             
         </form>
-		<hr>
-		<div id="links-container"></div>
-	</div>
+        <hr>
+        <div id="links-container"></div>
+    </div>
     <script src="script.js"></script>
-	<script>
+    <script>
         // Function to load the links.html content into the links-container div
         fetch('links.html')
             .then(response => response.text())
@@ -199,6 +200,5 @@
                 document.getElementById('links-container').innerHTML = data;
             });
     </script>
-	
 </body>
 </html>
