@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kysely</title>
+    <style>
+		body {
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+		}
+        
+		.options button {
+            font-size: 18px;
+            margin: 5px;
+            padding: 10px 20px;
+			transition: background-color 0.3s, color 0.3s;
+        }
+		
+		.options button:hover {
+			background-color: #007BFF;
+			color: white;
+		}
+        
+		.result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+		.counter {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="result" id="result"></div>
+	<div class="counter">
+        <p>Kysymys <span id="question-number">1</span></p>
+        <p>Oikein vastattu: <span id="correct-percentage">0</span>%</p>
+    </div>
+
+    <script>
+	
+		let currentQuestionz = 1;
+        let correctAnswers = 0;
+		let totalQuestions = 1;
+		
+        const questions = [
+            { question: "Alumiini", answer: "Al" },
+            { question: "Elohopea", answer: "Hg" },
+            { question: "Fluori", answer: "F" },
+            { question: "Fosfori", answer: "P" },
+            { question: "Happi", answer: "O" },
+            { question: "Helium", answer: "He" },
+            { question: "Hiili", answer: "C" },
+            { question: "Hopea", answer: "Ag" },
+            { question: "Jodi", answer: "I" },
+            { question: "Kalium", answer: "K" },
+            { question: "Kalsium", answer: "Ca" },
+            { question: "Kloori", answer: "Cl" },
+            { question: "Kulta", answer: "Au" },
+            { question: "Kupari", answer: "Cu" },
+            { question: "Litium", answer: "Li" },
+            { question: "Lyijy", answer: "Pb" },
+            { question: "Magnesium", answer: "Mg" },
+            { question: "Natrium", answer: "Na" },
+            { question: "Nikkeli", answer: "Ni" },
+            { question: "Pii", answer: "Si" },
+            { question: "Platina", answer: "Pt" },
+            { question: "Rauta", answer: "Fe" },
+            { question: "Rikki", answer: "S" },
+            { question: "Sinkki", answer: "Zn" },
+            { question: "Tina", answer: "Sn" },
+            { question: "Typpi", answer: "N" },
+            { question: "Uraani", answer: "U" },
+            { question: "Vety", answer: "H" }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function showQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const resultElement = document.getElementById('result');
+
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = `${currentQuestion.question} = ?`;
+
+            optionsElement.innerHTML = '';
+            const options = ["A", "Ag", "Al", "Au", "C", "Ca", "Cl", "Cu", "El", "F", "Fe", "Fl", "H", "Ha", "He", "Hg", "Hi", "Ho", "I", "K", "Ku", "Li", "Ly", "Mg", "N", "Na", "Ni", "O", "P", "Pb", "Pt", "S", "Si", "Sn", "T", "Ti", "Ty", "U", "V", "Zn"];
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => checkAnswer(option);
+                optionsElement.appendChild(button);
+            });
+
+            resultElement.textContent = '';
+        }
+
+        function checkAnswer(selectedOption) {
+            const resultElement = document.getElementById('result');
+            const currentQuestion = questions[currentQuestionIndex];
+
+            if (selectedOption === currentQuestion.answer) {
+				correctAnswers++;
+				resultElement.textContent = 'Oikein!';
+				resultElement.className = 'result correct';
+				
+            } else {
+				resultElement.textContent = `Väärin! ${currentQuestion.question} on ${currentQuestion.answer}.`;
+				resultElement.className = 'result incorrect';
+            }
+			
+			document.getElementById('question-number').innerText = currentQuestionz;
+            const percentage = (correctAnswers / currentQuestionz) * 100;
+            document.getElementById('correct-percentage').innerText = percentage.toFixed(0);
+			currentQuestionz++;
+						
+            setTimeout(() => {
+                currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+                showQuestion();
+            }, 5000);
+        }
+		
+
+
+        shuffle(questions);
+        showQuestion();
+    </script>
+</body>
+</html>
